@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Pendo
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+
+
+      let initParams = PendoInitParams()
+  initParams.visitorId = "red bar"
+      initParams.visitorData = ["Age": "25", "Country": "UK", "Gender": "F"]
+   initParams.accountId = "Acme"
+      initParams.accountData = ["Tier": "1", "Timezone": "EST", "Size": "Enterprise"]
+
+
+
+      PendoManager.shared().initSDK(
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6IiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiJhY2E3ODNiZmNmY2ZiOTRkZWQyNmM2NWVlZjY4ZDJmYmMyY2MyNzRmYjc4MDA4MGI3MzY2ODUzMjQyNDlkZmM1NTUxNDM1OWUyMDIwYTZlOGY2M2ViMWViN2UzZWNlOGMzNjk4ZjZlYzY0NjNjODU3MzY1NzVlZmQ0YTU1YzZhYS5lZmFmNmJmNzljMWQ3M2M0MDIwODY0NGVmYTQ3YTRlZC5kNTRlYmJhMDA4MDMzNzVlMDI3ODNkNTNmZTBjMzY2MWRhMWZjZjVkY2U0MTE1Mjc5NjM2N2Q1OTc4MTQyY2M0In0.UFPbOzxYKaDPyXeK-OzuTgKkEqtvceYOxhmrG19noOsPBM9R_4A24vo2AzGXqc8DHnSg7DWZELLXog5SLNBqKO4ZE8WW4UVqZ4cMf9Ri53Nzy6sK0mQUvQH4xqnOzqi8GXIONXs3WKgD4z5pjdujQ4vmLMi1-jG6vBUFa8ulDE4",
+      initParams: initParams)
+
+
+
+
+
+
+
         // Override point for customization after application launch.
         return true
     }
@@ -41,6 +63,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+  func application(_ app: UIApplication,
+  open url: URL,
+  options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
+     {
+         if url.scheme?.range(of: "pendo") != nil {
+             PendoManager.shared().initWith(url)
 
+             return true
+         }
+         // your code here...
+         return true
+     }
 }
 

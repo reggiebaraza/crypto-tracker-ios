@@ -1,0 +1,16 @@
+PODS:
+  - Pendo (2.14.0.5145)
+
+DEPENDENCIES:
+  - Pendo (~> 2.14.0)
+
+SPEC REPOS:
+  trunk:
+    - Pendo
+
+SPEC CHECKSUMS:
+  Pendo: 9a61dcb947ab857481facf0d3d93e379080ba71f
+
+PODFILE CHECKSUM: 3527c5c906a4beba4a8810e8ea8f3b6622528b95
+
+COCOAPODS: 1.11.2
